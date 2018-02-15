@@ -24,22 +24,32 @@ data.addColumn('string', 'Dependencies');
 
 data.addRows([
    ['Plan', 'Project Plan', 'Obligatory Deliverables',
-   new Date(2018, 1, 9), new Date(2018, 1, 15), null,  0,  null],
-   ['BckGrndStdy', 'Background Study', 'Research' ,
-   new Date(2018, 1, 9), new Date(2018, 2, 5), null,  0,  null],
-   ['DecideAlg', 'Algorithm Study', 'Research' ,
-   new Date(2018, 1, 16), new Date(2018, 1, 18), null,  0,  null],
-   ['SetUpSim', 'Set Up the Simulation', 'Implementation' ,
-   new Date(2018, 1, 19), new Date(2018, 1, 23), null,  0,  'DecideAlg'],
-   ['ConductExp', 'Simulations & Experiments', 'Implementation',
-   new Date(2018, 1, 24), new Date(2018, 3, 23), null,  0,  'SetUpSim'],
+   new Date(2018, 1, 9), new Date(2018, 1, 16), null,  0,  null],
+   ['AlgStudy', 'Algorithm Study', 'Research' ,
+   new Date(2018, 1, 9), new Date(2018, 1, 19), null,  0,  null],
+   // First Iteration
+   ['SetUpSim1', 'First Implementation', 'First Iteration' ,
+   new Date(2018, 1, 19), new Date(2018, 1, 22), null,  0,  'AlgStudy'],
+   ['ConductExp1', 'Experiments & Results', 'First Iteration',
+   new Date(2018, 1, 22), new Date(2018, 2, 1), null,  0,  'SetUpSim1'],
+   // Second Iteration
+   ['SetUpSim2', 'Second Implementation', 'Second Iteration' ,
+   new Date(2018, 2, 1), new Date(2018, 2, 10), null,  0,  'ConductExp1'],
+   ['ConductExp2', 'Experiments & Results', 'Second Iteration',
+   new Date(2018, 2, 10), new Date(2018, 2, 12), null,  0,  'SetUpSim2'],
+   // Third Iteration
+   ['RealData', 'Real Data Research', 'Research' ,
+   new Date(2018, 2, 12), new Date(2018, 2, 15), null,  0,  'ConductExp2'],
+   ['ConductExp3', 'Experiments & Results', 'Third Iteration',
+   new Date(2018, 2, 15), new Date(2018, 2, 19), null,  0,  'RealData'],
+
    ['FirstDraft', 'First Draft', 'Obligatory Deliverables' ,
    new Date(2018, 2, 4), new Date(2018, 3, 23), null,  0,  null]
 
 ]);
 
 var options = {
-          height: 800,
+          height: 1000,
           width: 1000,
           gantt: {
             criticalPathEnabled: false, // Critical path arrows will be the same as other arrows.
@@ -47,9 +57,10 @@ var options = {
               angle: 45,
               width: 2,
               color: 'black',
-              radius: 10
+              radius: 0
             }
           }
+          
         };
 
 var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
